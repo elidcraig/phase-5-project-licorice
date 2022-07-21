@@ -4,6 +4,6 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    render json: Artist.find params[:id]
+    render json: Artist.find(params[:id])
   end
 end

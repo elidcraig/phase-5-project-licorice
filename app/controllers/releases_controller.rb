@@ -4,6 +4,6 @@ class ReleasesController < ApplicationController
   end
 
   def show
-    render json: Release.find params[:id]
+    render json: Release.find(params[:id])
   end
 end
