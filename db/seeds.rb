@@ -1,7 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+soad = Artist.create(name: 'System of a Down', image_url: '', bio: '')
+pine = Artist.create(name: 'Pinegrove', image_url: '', bio: '')
+norma = Artist.create(name: 'Norma Jean', image_url: '', bio: '')
+twin = Artist.create(name: 'Twin Forks', image_url: '', bio: '')
+gami = Artist.create(name: 'Origami Angel', image_url: '', bio: '')
+
+Release.create(title: 'System of a Down', release_date:'1999', artwork_url:'', release_type: 'Album', artist: soad)
+Release.create(title:'Toxicity', release_date:'2001',artwork_url:'',release_type:'Album',artist: soad)
+Release.create(title:'Steal This Album!', release_date:'2002',artwork_url:'',release_type:'Album',artist: soad)
+Release.create(title:'Mezmerize', release_date:'2005',artwork_url:'',release_type:'Album',artist: soad)
+Release.create(title:'Hypnotize', release_date:'2005',artwork_url:'',release_type:'Album',artist: soad)
+Release.create(title:'Everything So Far', release_date:'2015',artwork_url:'',release_type:'Album',artist: pine)
+Release.create(title:'Cardinal', release_date:'2016',artwork_url:'',release_type:'Album',artist: pine)
+Release.create(title:'Skylight', release_date:'2018',artwork_url:'',release_type:'Album',artist: pine)
+Release.create(title:'Marigold', release_date:'2020',artwork_url:'',release_type:'Album',artist: pine)
+Release.create(title:'11:11', release_date:'2022',artwork_url:'',release_type:'Album',artist: pine)
+Release.create(title:'Twin Forks', release_date:'2014',artwork_url:'',release_type:'Album',artist: twin)
+Release.create(title:'Somewhere City', release_date:'2019',artwork_url:'',release_type:'Album',artist: gami)
+Release.create(title:'Gami Gang', release_date:'2021',artwork_url:'',release_type:'Album',artist: gami)
+Release.create(title:'Bless the Martyr and Kiss the Child', release_date:'2002',artwork_url:'',release_type:'Album',artist: norma)
+Release.create(title:'O God the Aftermath', release_date:'2005',artwork_url:'',release_type:'Album',artist: norma)
+Release.create(title:'Redeemer', release_date:'2006',artwork_url:'',release_type:'Album',artist: norma)
+Release.create(title:'The Anti Mother', release_date:'2008',artwork_url:'',release_type:'Album',artist: norma)
+Release.create(title:'Meridional', release_date:'2010',artwork_url:'',release_type:'Album',artist: norma)
+Release.create(title:'Wrongdoers', release_date:'2013',artwork_url:'',release_type:'Album',artist: norma)
+Release.create(title:'Polar Similar', release_date:'2016',artwork_url:'',release_type:'Album',artist: norma)
+Release.create(title:'All Hail', release_date:'2019',artwork_url:'',release_type:'Album',artist: norma)
