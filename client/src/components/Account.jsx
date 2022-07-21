@@ -3,7 +3,9 @@ import React, { useEffect } from 'react';
 function Account() {
 
   useEffect(() => {
-    fetch('http://localhost:3000/me')
+    fetch('/me', {
+      credentials: 'include'
+    })
     .then(res => res.json())
     .then(console.log)
   }, [])
