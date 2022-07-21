@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom'
 import { Stack, Input, Button, FormControl, FormLabel } from '@chakra-ui/react'
+import { currentUserAtom } from '../state/CurrentUser';
+import { postSignup } from '../requests/Users'
 
 function SignupForm() {
   const navigate = useNavigate()
@@ -15,9 +18,11 @@ function SignupForm() {
     bio: ''
   })
 
+  const [, setCurrentUser] = useAtom(currentUserAtom)
+
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const config = {
@@ -30,21 +35,25 @@ function SignupForm() {
       bio: formData.bio
     }
 
-    fetch('/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(config)
-    })
-    .then(res => {
-      if (res.ok) {
-        res.json().then(user => {
-          console.log(user)
-          navigate('/me', { replace: true })
-        })
-      } else {
-        res.json().then(errors => console.error(errors))
-      }
-    })
+    const user = await postSignup(config)
+    setCurrentUser(user.id)
+    navigate('/me', { replace: true })
+
+    // fetch('/signup', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(config)
+    // })
+    // .then(res => {
+    //   if (res.ok) {
+    //     res.json().then(user => {
+    //       console.log(user)
+    //       navigate('/me', { replace: true })
+    //     })
+    //   } else {
+    //     res.json().then(errors => console.error(errors))
+    //   }
+    // })
   }
 
   return (
