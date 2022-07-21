@@ -5,14 +5,13 @@ import SignupForm from './components/SignupForm'
 
 function App() {
 
-
   return (
       <div className="App">
         <header>LICORICE</header>
         <Routes>
-          <Route path='/' >
-            <Route path='/login' element={<LoginForm />}/>
-            <Route path='/signup' element={<SignupForm />} />
+          <Route exact path='/' >
+            <Route path='login' element={<LoginForm />}/>
+            <Route path='signup' element={<SignupForm />} />
           </Route>
         </Routes>
       </div>
