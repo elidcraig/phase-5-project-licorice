@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { Stack, Input, Button, FormControl, FormLabel } from '@chakra-ui/react'
 
 function SignupForm() {
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     username: '',
@@ -28,14 +30,17 @@ function SignupForm() {
       bio: formData.bio
     }
 
-    fetch('http://localhost:3000/signup', {
+    fetch('/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(config)
     })
     .then(res => {
       if (res.ok) {
-        res.json().then(user => console.log(user))
+        res.json().then(user => {
+          console.log(user)
+          navigate('/me', { replace: true })
+        })
       } else {
         res.json().then(errors => console.error(errors))
       }

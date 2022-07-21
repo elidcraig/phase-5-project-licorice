@@ -14,10 +14,7 @@ function LoginForm() {
     
     fetch('/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     })
     .then(res => {
