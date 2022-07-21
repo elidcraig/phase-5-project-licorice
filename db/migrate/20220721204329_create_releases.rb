@@ -5,7 +5,7 @@ class CreateReleases < ActiveRecord::Migration[7.0]
       t.string :title
       t.string :release_date
       t.string :artwork_url
-      t.string :type
+      t.string :release_type
 
       t.timestamps
     end
