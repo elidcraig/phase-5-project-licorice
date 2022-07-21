@@ -28,11 +28,11 @@ function LoginForm() {
       <Stack>
         <FormControl isRequired>
           <FormLabel>Username</FormLabel>
-          <Input type='text' name='username' onChange={ handleChange }/>
+          <Input type='text' name='username' value={formData.username} onChange={ handleChange }/>
         </FormControl>
         <FormControl isRequired>
           <FormLabel>Password</FormLabel>
-          <Input type='password' name='password' onChange={ handleChange }/>
+          <Input type='password' name='password' value={formData.password} onChange={ handleChange }/>
         </FormControl>
         <Button type='submit'>LOGIN</Button>
       </Stack>
