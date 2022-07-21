@@ -8,9 +8,9 @@ class ApplicationController < ActionController::API
 
   private
 
-  def current_user
-    @current_user ||= User.find_by id: session[:user_id]
-  end
+  # def current_user
+    # @current_user ||= User.find_by(id: session[:user_id])
+  # end
 
   def handle_not_found exception
     render json: { error: "#{ exception.model } not found" }, status: 404
