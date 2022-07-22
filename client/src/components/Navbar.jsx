@@ -18,6 +18,8 @@ import { Search2Icon } from '@chakra-ui/icons'
 
 function Navbar({ currentUser }) {
 
+  const [search, setSearch] = useState('')
+
   return (
     <Flex >
       <Image src='https://i.imgur.com/vWfbH8W.png' alt='Licorice logo' maxWidth='200px'/>
@@ -41,8 +43,8 @@ function Navbar({ currentUser }) {
       </Breadcrumb>
       <Spacer />
       <InputGroup maxWidth='300px'>
-        <Input placeholder='Search...' />
-        <InputRightElement children={ <Search2Icon /> } />
+        <Input placeholder='Search...' value={ search } onChange={ (e) => setSearch(e.target.value) } />
+        <InputRightElement as={ Link } to={`/search/${ search }`} children={ <Search2Icon /> } />
       </InputGroup>
       <Spacer />
       {currentUser ? 

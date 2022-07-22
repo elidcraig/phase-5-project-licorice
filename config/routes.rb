@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  resources :releases, only: [:index, :show]
-  resources :artists, only: [:index, :show]
+  get '/releases/q=:search', to: 'releases#index'
+  get '/artists/q=:search', to: 'artists#index'
+  resources :releases, only: [:show]
+  resources :artists, only: [:show]
   # resources :users, only: [:create]
+
 
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'

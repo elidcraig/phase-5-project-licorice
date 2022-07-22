@@ -8,6 +8,7 @@ import SignupForm from './components/SignupForm'
 import Account from './pages/Account';
 import Artist from './pages/Artist';
 import Release from './pages/Release';
+import Search from './pages/Search';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/me' element={ <Account currentUser={ userQuery.data } /> } />
         <Route path='/artist/:id' element={ <Artist /> } />
         <Route path='/release/:id' element={ <Release /> } />
+        <Route path='/search/:queryInput' element={ <Search /> } />
       </Routes>
     </div>
   );
