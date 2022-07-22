@@ -1,6 +1,5 @@
 class ReleasesController < ApplicationController
   def index
-    # render json: Release.all
     results = Release.where("title LIKE ?", "%#{ params[:search] }%")
     render json: results
   end

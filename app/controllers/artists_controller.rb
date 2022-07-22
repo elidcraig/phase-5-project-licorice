@@ -1,6 +1,7 @@
 class ArtistsController < ApplicationController
   def index
-    render json: Artist.all
+    results = Artist.where("title LIKE ?", "%#{ params[:search] }%")
+    render json: results
   end
 
   def show

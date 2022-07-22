@@ -1,20 +1,25 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query'
-import { Box } from '@chakra-ui/react'
-import { getReleaseFromSearch } from '../requests/Releases'
+import { Stack } from '@chakra-ui/react'
+import { getReleasesFromSearch } from '../requests/Releases'
+import ReleaseCard from '../components/ReleaseCard';
 
 function Search() {
   const { queryInput } = useParams()
   console.log(queryInput)
 
-  const searchQuery = useQuery(['search'], () => getReleaseFromSearch(queryInput))
-  console.log(searchQuery.data)
+  const { isLoading, data } = useQuery(['search'], () => getReleasesFromSearch(queryInput))
+  console.log(data)
+
+  if (isLoading) return <div>Loading...</div>
+
+  
 
   return (
-    <Box>
-
-    </Box>
+    <Stack>
+      { data.map(release => <ReleaseCard key={ release.id } { ...release }/>) }
+    </Stack>
   );
 }
 
