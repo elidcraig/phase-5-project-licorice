@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom'
 import { Stack, Input, Button, FormControl, FormLabel } from '@chakra-ui/react'
-import { currentUserAtom } from '../state/CurrentUser';
 import { postSignup } from '../requests/Users'
 
 function SignupForm() {
@@ -18,7 +16,7 @@ function SignupForm() {
     bio: ''
   })
 
-  const [, setCurrentUser] = useAtom(currentUserAtom)
+  const [currentStuff, setCurrentStuff] = useState({})
 
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -36,24 +34,9 @@ function SignupForm() {
     }
 
     const user = await postSignup(config)
-    setCurrentUser(user)
+    setCurrentStuff(user) // refactor to react query mutation
     navigate('/me', { replace: true })
 
-    // fetch('/signup', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(config)
-    // })
-    // .then(res => {
-    //   if (res.ok) {
-    //     res.json().then(user => {
-    //       console.log(user)
-    //       navigate('/me', { replace: true })
-    //     })
-    //   } else {
-    //     res.json().then(errors => console.error(errors))
-    //   }
-    // })
   }
 
   return (

@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { useAtom } from 'jotai'
 import { useNavigate } from 'react-router-dom'
 import { Stack, Input, Button, FormControl, FormLabel } from '@chakra-ui/react'
-import { currentUserAtom } from '../state/CurrentUser';
 import { postLogin } from '../requests/Users'
 
 function LoginForm() {
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({ username: '', password: '' })
-  const [, setCurrentUser] = useAtom(currentUserAtom)
+  const [currentUser, setCurrentUser] = useState({})
 
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 

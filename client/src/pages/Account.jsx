@@ -1,23 +1,19 @@
-import React, { useEffect } from 'react';
-import { useAtom } from 'jotai';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
-import { currentUserAtom } from '../state/CurrentUser';
-import { getMe, deleteLogout } from '../requests/Users'
+import { deleteLogout } from '../requests/Users'
 
-function Account() {
+function Account({ currentUser }) {
 
   const navigate = useNavigate()
 
-  // const userQuery = useQuery(['currentUser'], getMe)
-
-  const [, setCurrentUser] = useAtom(currentUserAtom)
+  const [currentUserStuff, setCurrentUserStuff] = useState({})
 
   const handleLogout = async () => {
     const response = await deleteLogout()
     if (response.ok) {
-      setCurrentUser({})
+      setCurrentUserStuff({}) // refactor to react query mutation
       navigate('/login', { replace: true })
     }
   }
