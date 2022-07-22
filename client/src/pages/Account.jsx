@@ -10,20 +10,20 @@ function Account() {
 
   const navigate = useNavigate()
 
-  const userQuery = useQuery(['currentUser'], getMe)
+  // const userQuery = useQuery(['currentUser'], getMe)
 
-  const [currentUser, setCurrentUser] = useAtom(currentUserAtom)
+  const [, setCurrentUser] = useAtom(currentUserAtom)
 
   const handleLogout = async () => {
     const response = await deleteLogout()
     if (response.ok) {
-      setCurrentUser(null)
+      setCurrentUser({})
       navigate('/login', { replace: true })
     }
   }
 
-  if (userQuery.isError) return <span>ERROR!!</span>
-  if (userQuery.isLoading) return <span>Loading...</span>
+  // if (userQuery.isError) return <span>ERROR!!</span>
+  // if (userQuery.isLoading) return <span>Loading...</span>
 
   return (
     <div>ACCOUNT

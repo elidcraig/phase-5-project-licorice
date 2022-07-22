@@ -36,7 +36,7 @@ function SignupForm() {
     }
 
     const user = await postSignup(config)
-    setCurrentUser(user.id)
+    setCurrentUser(user)
     navigate('/me', { replace: true })
 
     // fetch('/signup', {

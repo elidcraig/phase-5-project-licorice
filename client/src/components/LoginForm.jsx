@@ -16,7 +16,7 @@ function LoginForm() {
   const handleLogin = async (e) => {
     e.preventDefault()
     const user = await postLogin(formData)
-    setCurrentUser(user.id)
+    setCurrentUser(user)
     navigate('/me', { replace: true })
     // fetch('/login', {
     //   method: 'POST',
