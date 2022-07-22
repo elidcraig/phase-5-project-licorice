@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAtom } from 'jotai';
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@chakra-ui/react';
 import { currentUserAtom } from '../state/CurrentUser';
@@ -9,13 +10,9 @@ function Account() {
 
   const navigate = useNavigate()
 
-  const [currentUser, setCurrentUser] = useAtom(currentUserAtom)
+  const userQuery = useQuery(['currentUser'], getMe)
 
-  useEffect(() => {
-    fetch('/me')
-    .then(res => res.json())
-    .then(user => {if(currentUser === null) setCurrentUser(user.id)})
-  }, [])
+  const [currentUser, setCurrentUser] = useAtom(currentUserAtom)
 
   const handleLogout = async () => {
     const response = await deleteLogout()
@@ -24,6 +21,9 @@ function Account() {
       navigate('/login', { replace: true })
     }
   }
+
+  if (userQuery.isError) return <span>ERROR!!</span>
+  if (userQuery.isLoading) return <span>Loading...</span>
 
   return (
     <div>ACCOUNT
