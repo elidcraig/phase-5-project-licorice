@@ -1,4 +1,4 @@
-export async function getArtist(id) {
+export async function getOneArtist(id) {
   const response = await fetch(`/artists/${ id }`)
   return await response.json()
 }
