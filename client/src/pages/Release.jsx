@@ -9,8 +9,19 @@ function Release() {
 
   const releaseQuery = useQuery(['release'], () => getOneRelease(id))
   
+  // stack:
+  // image
+  // button bar
+  // heading
+  // subheading
+  // rating bar
+  // tracklist
+  if (releaseQuery.isLoading) return <h6>Loading...</h6>
+
   return (
-    <div></div>
+    <>
+      <ReleaseInfo release={ releaseQuery.data }/>
+    </>
   );
 }
 
