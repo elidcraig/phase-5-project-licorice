@@ -15,7 +15,7 @@ function Artist() {
   return (
     <>
       <ArtistInfo artist={ artistQuery.data } />
-      <ReleaseContainer />
+      <ReleaseContainer releases={ artistQuery.data.releases } />
     </>
   );
 }
