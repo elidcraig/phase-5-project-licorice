@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { useAtom } from 'jotai';
+import { useQueryClient } from '@tanstack/react-query';
 import {
   Flex,
   Spacer,
@@ -17,6 +17,7 @@ import {
 import { Search2Icon } from '@chakra-ui/icons'
 
 function Navbar({ currentUser }) {
+  const queryClient = useQueryClient()
 
   const [search, setSearch] = useState('')
 
@@ -44,7 +45,12 @@ function Navbar({ currentUser }) {
       <Spacer />
       <InputGroup maxWidth='300px'>
         <Input placeholder='Search...' value={ search } onChange={ (e) => setSearch(e.target.value) } />
-        <InputRightElement as={ Link } to={`/search/${ search }`} children={ <Search2Icon /> } />
+        <InputRightElement
+          as={ Link }
+          to={`/search/${ search }`} 
+          onClick={ () => queryClient.invalidateQueries('search') }
+          children={ <Search2Icon /> } 
+        />
       </InputGroup>
       <Spacer />
       {currentUser ? 
