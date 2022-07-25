@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :favorite_releases, only: [:create, :destroy]
   resources :favorite_artists, only: [:create, :destroy]
   get '/me/favorite_releases', to: 'favorite_releases#index'
+  get '/me/favorite_artists', to: 'favorite_artists#index'
   # resources :release_genres
   # resources :artist_genres
   # resources :genres

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ArtistInfo from '../components/ArtistInfo'
 import ReleaseContainer from '../components/ReleaseContainer'
 
-function Artist() {
+function Artist({ currentUser }) {
   const { id } = useParams()
 
   const [artist, setArtist] = useState({})
@@ -24,7 +24,7 @@ function Artist() {
 
   return (
     <>
-      <ArtistInfo artist={ artist } />
+      <ArtistInfo artist={ artist } currentUser={ currentUser } />
       <ReleaseContainer releases={ artist.releases } />
     </>
   );
