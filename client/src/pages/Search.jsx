@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query'
 import { Stack } from '@chakra-ui/react'
-import { getReleasesFromSearch } from '../requests/Releases'
 import ReleaseCard from '../components/ReleaseCard';
 
 function Search() {
-  const { queryInput } = useParams()
-  console.log(queryInput)
+  const { query } = useParams()
 
-  const { isLoading, data } = useQuery(['search'], () => getReleasesFromSearch(queryInput))
-  console.log(data)
+  const [results, setResults] = useState([])
 
-  if (isLoading) return <div>Loading...</div>
+  useEffect(() => {
+    getReleasesFromSearch()
+  }, [query])
 
-  
+  async function getReleasesFromSearch() {
+    const response = await fetch(`/releases/q=${ query }`)
+    const data = await response.json()
+    if (response.ok) setResults(data)
+  }
 
   return (
     <Stack>
-      { data.map(release => <ReleaseCard key={ release.id } { ...release }/>) }
+      { results.map(release => <ReleaseCard key={ release.id } { ...release } />) }
     </Stack>
   );
 }

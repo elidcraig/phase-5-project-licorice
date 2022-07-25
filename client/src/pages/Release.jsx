@@ -14,7 +14,7 @@ function Release() {
   async function getRelease() {
     const response = await fetch(`/releases/${ id }`)
     const data = await response.json()
-    if (data.id) setRelease(data)
+    if (response.ok) setRelease(data)
   }
 
   if (!release.id) return <h6>Loading...</h6>

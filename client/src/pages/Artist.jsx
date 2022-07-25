@@ -15,7 +15,7 @@ function Artist() {
   async function getArtist() {
     const response = await fetch(`/artists/${ id }`)
     const data = await response.json()
-    if (data.id) setArtist(data)
+    if (response.ok) setArtist(data)
   }
 
   if (!artist.id) return <h6>Loading...</h6>

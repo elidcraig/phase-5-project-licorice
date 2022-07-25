@@ -23,11 +23,12 @@ function App() {
   }
 
   const handleLogin = newUser => setCurrentUser(newUser)
+  
   const handleLogout = () => setCurrentUser({})
 
   return (
     <div className="App">
-      <Navbar key={ currentUser.username } currentUser={ currentUser }/>
+      <Navbar currentUser={ currentUser } />
       <Routes>
         <Route exact path='/' />
         <Route path='/login' element={ <LoginForm currentUser={ currentUser } setCurrentUser={ handleLogin }/> } />
@@ -35,7 +36,7 @@ function App() {
         <Route path='/me' element={ <Account currentUser={ currentUser } setCurrentUser={ handleLogout }/> } />
         <Route path='/artist/:id' element={ <Artist currentUser={ currentUser }/> } />
         <Route path='/release/:id' element={ <Release currentUser={ currentUser }/> } />
-        <Route path='/search/:queryInput' element={ <Search currentUser={ currentUser }/> } />
+        <Route path='/search/:query' element={ <Search currentUser={ currentUser }/> } />
       </Routes>
     </div>
   );

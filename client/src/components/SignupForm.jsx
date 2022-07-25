@@ -16,8 +16,6 @@ function SignupForm({ currentUser, setCurrentUser }) {
     bio: ''
   })
 
-  // const [currentStuff, setCurrentStuff] = useState({})
-
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
   const handleSubmit = async (e) => {
@@ -40,7 +38,7 @@ function SignupForm({ currentUser, setCurrentUser }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={ handleSubmit }>
       <Stack>
         <FormControl isRequired>
           <FormLabel>Username</FormLabel>
