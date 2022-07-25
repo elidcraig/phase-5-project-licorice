@@ -8,6 +8,7 @@ import Account from './pages/Account';
 import Artist from './pages/Artist';
 import Release from './pages/Release';
 import Search from './pages/Search';
+import Home from './pages/Home';
 
 function App() {
 
@@ -23,14 +24,14 @@ function App() {
   }
 
   const handleLogin = newUser => setCurrentUser(newUser)
-  
+
   const handleLogout = () => setCurrentUser({})
 
   return (
     <div className="App">
       <Navbar currentUser={ currentUser } />
       <Routes>
-        <Route exact path='/' />
+        <Route exact path='/' element={ <Home/> } />
         <Route path='/login' element={ <LoginForm currentUser={ currentUser } setCurrentUser={ handleLogin }/> } />
         <Route path='/signup' element={ <SignupForm currentUser={ currentUser } setCurrentUser={ handleLogin }/> } />
         <Route path='/me' element={ <Account currentUser={ currentUser } setCurrentUser={ handleLogout }/> } />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   Flex,
   Spacer,
@@ -16,6 +16,7 @@ import {
 import { Search2Icon } from '@chakra-ui/icons'
 
 function Navbar({ currentUser }) {
+  const navigate = useNavigate()
 
   const [search, setSearch] = useState('')
 
@@ -51,7 +52,7 @@ function Navbar({ currentUser }) {
       </InputGroup>
       <Spacer />
       {!!currentUser.id ? 
-        <Avatar name={ currentUser.username } src={ currentUser.avatarUrl } /> :
+        <Avatar name={ currentUser.username } src={ currentUser.avatarUrl } onClick={ () => navigate('/me') }/> :
         <Button variant='outline' as={ Link } to='/login'>LOG IN</Button>
       }
       
