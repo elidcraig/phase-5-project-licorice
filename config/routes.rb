@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :release_genres
+  resources :artist_genres
+  resources :genres
   get '/releases/q=:search', to: 'releases#index'
   get '/artists/q=:search', to: 'artists#index'
   resources :releases, only: [:show]

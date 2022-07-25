@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_204329) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_25_052320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artist_genres", force: :cascade do |t|
+    t.bigint "genre_id", null: false
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_artist_genres_on_artist_id"
+    t.index ["genre_id"], name: "index_artist_genres_on_genre_id"
+  end
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -20,6 +29,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_204329) do
     t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "release_genres", force: :cascade do |t|
+    t.bigint "genre_id", null: false
+    t.bigint "release_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_release_genres_on_genre_id"
+    t.index ["release_id"], name: "index_release_genres_on_release_id"
   end
 
   create_table "releases", force: :cascade do |t|
@@ -44,5 +68,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_204329) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "artist_genres", "artists"
+  add_foreign_key "artist_genres", "genres"
+  add_foreign_key "release_genres", "genres"
+  add_foreign_key "release_genres", "releases"
   add_foreign_key "releases", "artists"
 end

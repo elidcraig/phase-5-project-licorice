@@ -1,8 +1,19 @@
+genres = ['Metal', 'Emo', 'Folk']
+metal = Genre.create(name: 'Metal')
+emo = Genre.create(name: 'Emo')
+folk = Genre.create(name: 'Folk')
+
 soad = Artist.create(name: 'System of a Down', image_url: '', bio: '')
 pine = Artist.create(name: 'Pinegrove', image_url: '', bio: '')
 norma = Artist.create(name: 'Norma Jean', image_url: '', bio: '')
 twin = Artist.create(name: 'Twin Forks', image_url: '', bio: '')
 gami = Artist.create(name: 'Origami Angel', image_url: '', bio: '')
+
+ArtistGenre.create(artist: soad, genre: metal)
+ArtistGenre.create(artist: pine, genre: emo)
+ArtistGenre.create(artist: norma, genre: metal)
+ArtistGenre.create(artist: twin, genre: folk)
+ArtistGenre.create(artist: gami, genre: emo)
 
 Release.create(title: 'System of a Down', release_date:'1999', artwork_url:'', release_type: 'Album', artist: soad)
 Release.create(title:'Toxicity', release_date:'2001',artwork_url:'',release_type:'Album',artist: soad)
