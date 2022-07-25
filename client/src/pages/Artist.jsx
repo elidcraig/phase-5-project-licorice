@@ -20,6 +20,8 @@ function Artist() {
 
   if (!artist.id) return <h6>Loading...</h6>
 
+  console.log(artist)
+
   return (
     <>
       <ArtistInfo artist={ artist } />

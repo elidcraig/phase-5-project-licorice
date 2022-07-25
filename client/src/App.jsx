@@ -34,7 +34,7 @@ function App() {
         <Route exact path='/' element={ <Home/> } />
         <Route path='/login' element={ <LoginForm currentUser={ currentUser } setCurrentUser={ handleLogin }/> } />
         <Route path='/signup' element={ <SignupForm currentUser={ currentUser } setCurrentUser={ handleLogin }/> } />
-        <Route path='/me' element={ <Account currentUser={ currentUser } setCurrentUser={ handleLogout }/> } />
+        <Route path='/me' element={ <Account currentUser={ currentUser } clearCurrentUser={ handleLogout }/> } />
         <Route path='/artist/:id' element={ <Artist currentUser={ currentUser }/> } />
         <Route path='/release/:id' element={ <Release currentUser={ currentUser }/> } />
         <Route path='/search/:query' element={ <Search currentUser={ currentUser }/> } />
