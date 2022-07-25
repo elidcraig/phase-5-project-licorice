@@ -3,11 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { Stack, Input, Button, FormControl, FormLabel } from '@chakra-ui/react'
 import { postLogin } from '../requests/Users'
 
-function LoginForm() {
+function LoginForm({ currentUser, setCurrentUser }) {
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({ username: '', password: '' })
-  const [currentUser, setCurrentUser] = useState({})
 
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -16,22 +15,6 @@ function LoginForm() {
     const user = await postLogin(formData)
     setCurrentUser(user)
     navigate('/me', { replace: true })
-    // fetch('/login', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(formData)
-    // })
-    // .then(res => {
-    //   if (res.ok) {
-    //     res.json().then(user => {
-    //       console.log(user)
-    //       setCurrentUser(user.id)
-    //       navigate('/me', { replace: true })
-    //     })
-    //   } else {
-    //     res.json().then(errors => console.error(errors))
-    //   }
-    // })
   }
 
   return (

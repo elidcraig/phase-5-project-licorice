@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query';
 import { getMe } from './requests/Users';
 import Navbar from './components/Navbar';
 import LoginForm from './components/LoginForm';
@@ -12,19 +11,31 @@ import Search from './pages/Search';
 
 function App() {
 
-  const userQuery = useQuery(['currentUser'], getMe)
+  const [currentUser, setCurrentUser] = useState({})
+
+  useEffect(() => {
+    getCurrentUser()
+  }, [])
+  
+  const getCurrentUser = async () => {
+    const user = await getMe()
+    setCurrentUser(user)
+  }
+
+  const handleLogin = newUser => setCurrentUser(newUser)
+  const handleLogout = () => setCurrentUser({})
 
   return (
     <div className="App">
-      <Navbar currentUser={ userQuery.data }/>
+      <Navbar key={ currentUser.username } currentUser={ currentUser }/>
       <Routes>
         <Route exact path='/' />
-        <Route path='/login' element={ <LoginForm /> } />
-        <Route path='/signup' element={ <SignupForm /> } />
-        <Route path='/me' element={ <Account currentUser={ userQuery.data } /> } />
-        <Route path='/artist/:id' element={ <Artist /> } />
-        <Route path='/release/:id' element={ <Release /> } />
-        <Route path='/search/:queryInput' element={ <Search /> } />
+        <Route path='/login' element={ <LoginForm currentUser={ currentUser } setCurrentUser={ handleLogin }/> } />
+        <Route path='/signup' element={ <SignupForm currentUser={ currentUser } setCurrentUser={ handleLogin }/> } />
+        <Route path='/me' element={ <Account currentUser={ currentUser } setCurrentUser={ handleLogout }/> } />
+        <Route path='/artist/:id' element={ <Artist currentUser={ currentUser }/> } />
+        <Route path='/release/:id' element={ <Release currentUser={ currentUser }/> } />
+        <Route path='/search/:queryInput' element={ <Search currentUser={ currentUser }/> } />
       </Routes>
     </div>
   );

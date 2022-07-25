@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Stack, Input, Button, FormControl, FormLabel } from '@chakra-ui/react'
 import { postSignup } from '../requests/Users'
 
-function SignupForm() {
+function SignupForm({ currentUser, setCurrentUser }) {
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ function SignupForm() {
     bio: ''
   })
 
-  const [currentStuff, setCurrentStuff] = useState({})
+  // const [currentStuff, setCurrentStuff] = useState({})
 
   const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -34,7 +34,7 @@ function SignupForm() {
     }
 
     const user = await postSignup(config)
-    setCurrentStuff(user) // refactor to react query mutation
+    setCurrentUser(user)
     navigate('/me', { replace: true })
 
   }

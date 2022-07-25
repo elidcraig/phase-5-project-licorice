@@ -17,6 +17,7 @@ import {
 import { Search2Icon } from '@chakra-ui/icons'
 
 function Navbar({ currentUser }) {
+  console.log(currentUser)
   const queryClient = useQueryClient()
 
   const [search, setSearch] = useState('')
@@ -53,7 +54,7 @@ function Navbar({ currentUser }) {
         />
       </InputGroup>
       <Spacer />
-      {currentUser ? 
+      {!!currentUser.id ? 
         <Avatar name={ currentUser.username } src={ currentUser.avatarUrl } /> :
         <Button variant='outline' as={ Link } to='/login'>LOG IN</Button>
       }
