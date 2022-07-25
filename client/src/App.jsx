@@ -19,7 +19,7 @@ function App() {
   
   const getCurrentUser = async () => {
     const user = await getMe()
-    setCurrentUser(user)
+    if (user.id) setCurrentUser(user)
   }
 
   const handleLogin = newUser => setCurrentUser(newUser)

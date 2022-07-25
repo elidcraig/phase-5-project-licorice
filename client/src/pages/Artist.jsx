@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query'
-import { getOneArtist } from '../requests/Artists'
 import ArtistInfo from '../components/ArtistInfo'
 import ReleaseContainer from '../components/ReleaseContainer'
 
 function Artist() {
   const { id } = useParams()
 
-  const artistQuery = useQuery(['artist'], () => getOneArtist(id))
+  const [artist, setArtist] = useState({})
 
-  if (artistQuery.isLoading) return <h6>Loading...</h6>
+  useEffect(() => {
+    getArtist()
+  }, [])
+
+  async function getArtist() {
+    const response = await fetch(`/artists/${ id }`)
+    const data = await response.json()
+    if (data.id) setArtist(data)
+  }
+
+  if (!artist.id) return <h6>Loading...</h6>
 
   return (
     <>
-      <ArtistInfo artist={ artistQuery.data } />
-      <ReleaseContainer releases={ artistQuery.data.releases } />
+      <ArtistInfo artist={ artist } />
+      <ReleaseContainer releases={ artist.releases } />
     </>
   );
 }
