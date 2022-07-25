@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :favorite_releases
+  resources :favorite_artists
   resources :release_genres
   resources :artist_genres
   resources :genres

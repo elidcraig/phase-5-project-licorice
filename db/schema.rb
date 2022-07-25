@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_25_052320) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_25_163238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_052320) do
     t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_artists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_favorite_artists_on_artist_id"
+    t.index ["user_id"], name: "index_favorite_artists_on_user_id"
+  end
+
+  create_table "favorite_releases", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "release_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["release_id"], name: "index_favorite_releases_on_release_id"
+    t.index ["user_id"], name: "index_favorite_releases_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -70,6 +88,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_052320) do
 
   add_foreign_key "artist_genres", "artists"
   add_foreign_key "artist_genres", "genres"
+  add_foreign_key "favorite_artists", "artists"
+  add_foreign_key "favorite_artists", "users"
+  add_foreign_key "favorite_releases", "releases"
+  add_foreign_key "favorite_releases", "users"
   add_foreign_key "release_genres", "genres"
   add_foreign_key "release_genres", "releases"
   add_foreign_key "releases", "artists"

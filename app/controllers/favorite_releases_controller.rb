@@ -1,0 +1,2 @@
+class FavoriteReleasesController < ApplicationController
+end
