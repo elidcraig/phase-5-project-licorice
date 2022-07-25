@@ -15,6 +15,7 @@ import Favorites from '../components/Favorites'
 import ListenLater from '../components/ListenLater'
 import MyRatings from '../components/MyRatings'
 import MyLists from '../components/MyLists'
+import MyReviews from '../components/MyReviews'
 import { deleteLogout } from '../requests/Users'
 
 function Account({ currentUser, clearCurrentUser }) {
@@ -28,14 +29,6 @@ function Account({ currentUser, clearCurrentUser }) {
       navigate('/login', { replace: true })
     }
   }
-
-  // circle avatar image
-  // username heading
-  // tab group
-  // 
-  // listen later
-  // ratings
-  // lists
 
   return (
     <>
@@ -54,9 +47,13 @@ function Account({ currentUser, clearCurrentUser }) {
           <Tab>Saved</Tab>
           <Tab>Rated</Tab>
           <Tab>Lists</Tab>
+          <Tab>Reviews</Tab>
         </TabList>
 
         <TabPanels>
+          <TabPanel>
+
+          </TabPanel>
           <TabPanel>
 
           </TabPanel>
