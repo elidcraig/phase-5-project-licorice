@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
 import ReleaseInfo from '../components/ReleaseInfo'
 
-function Release() {
+function Release({ currentUser }) {
   const { id } = useParams()
 
   const [release, setRelease] = useState({})
@@ -21,7 +21,7 @@ function Release() {
 
   return (
     <>
-      <ReleaseInfo release={ release }/>
+      <ReleaseInfo release={ release } currentUser={ currentUser }/>
     </>
   );
 }

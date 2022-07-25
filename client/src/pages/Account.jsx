@@ -52,7 +52,7 @@ function Account({ currentUser, clearCurrentUser }) {
 
         <TabPanels>
           <TabPanel>
-
+            <Favorites />
           </TabPanel>
           <TabPanel>
 
