@@ -8,8 +8,8 @@ class ReleaseSavesController < ApplicationController
   end
 
   def create
-    newSave = ReleaseSave.create!(save_params)
-    render json: newSave, status: 201
+    new_save = ReleaseSave.create!(save_params)
+    render json: new_save, status: 201
   end
 
   private

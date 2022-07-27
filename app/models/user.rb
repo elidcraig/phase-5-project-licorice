@@ -9,5 +9,8 @@ class User < ApplicationRecord
   has_many :release_saves, class_name: "ReleaseSave"
   has_many :saved_releases, through: :release_saves, source: :release
 
+  has_many :release_reviews
+  has_many :reviewed_releases, through: :release_reviews, source: :release
+
   validates :username, presence: true, uniqueness: true
 end
