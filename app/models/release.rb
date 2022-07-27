@@ -4,4 +4,5 @@ class Release < ApplicationRecord
   has_many :genres, through: :release_genres
   has_many :favorite_releases
   has_many :users, through: :favorite_releases
+  has_many :release_reviews
 end

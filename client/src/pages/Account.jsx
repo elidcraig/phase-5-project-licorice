@@ -64,7 +64,7 @@ function Account({ currentUser, clearCurrentUser }) {
 
           </TabPanel>
           <TabPanel>
-
+            <MyReviews />
           </TabPanel>
         </TabPanels>
       </Tabs>
