@@ -44,8 +44,8 @@ function ReleaseInfo({ release, currentUser }) {
       <Image boxSize='350px' src={ release.artwork_url } alt={ release.title }/>
       <HStack >
         <Icon as={ AiFillHeart } onClick={ postFavoriteRelease }/>
-        <Icon as={ AiFillClockCircle } />
-        <Icon as={ AiOutlinePlus } onClick={ postSavedRelease }/>
+        <Icon as={ AiFillClockCircle } onClick={ postSavedRelease }/>
+        <Icon as={ AiOutlinePlus } />
       </HStack>
       <Heading >{ release.title }</Heading>
       <Heading as='h4' size='md'>{ release.artist.name }</Heading>
