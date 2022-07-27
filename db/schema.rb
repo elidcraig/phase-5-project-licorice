@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_25_163238) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_172550) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_163238) do
     t.index ["release_id"], name: "index_release_genres_on_release_id"
   end
 
+  create_table "release_saves", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "release_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["release_id"], name: "index_release_saves_on_release_id"
+    t.index ["user_id"], name: "index_release_saves_on_user_id"
+  end
+
   create_table "releases", force: :cascade do |t|
     t.bigint "artist_id", null: false
     t.string "title"
@@ -94,5 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_163238) do
   add_foreign_key "favorite_releases", "users"
   add_foreign_key "release_genres", "genres"
   add_foreign_key "release_genres", "releases"
+  add_foreign_key "release_saves", "releases"
+  add_foreign_key "release_saves", "users"
   add_foreign_key "releases", "artists"
 end

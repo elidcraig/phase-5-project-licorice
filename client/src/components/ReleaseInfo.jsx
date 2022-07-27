@@ -22,15 +22,21 @@ import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs'
 function ReleaseInfo({ release, currentUser }) {
 
   const postFavoriteRelease = async () => {
-    console.log(release.id)
-    console.log(currentUser.id)
     const response = await fetch('/favorite_releases', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ release_id: release.id, user_id: currentUser.id })
     })
     const data = await response.json()
-    console.log(data)
+  }
+
+  const postSavedRelease = async () => {
+    const response = await fetch('/release_saves', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ release_id: release.id, user_id: currentUser.id })
+    })
+    const data = await response.json()
   }
 
   return (
@@ -39,7 +45,7 @@ function ReleaseInfo({ release, currentUser }) {
       <HStack >
         <Icon as={ AiFillHeart } onClick={ postFavoriteRelease }/>
         <Icon as={ AiFillClockCircle } />
-        <Icon as={ AiOutlinePlus } />
+        <Icon as={ AiOutlinePlus } onClick={ postSavedRelease }/>
       </HStack>
       <Heading >{ release.title }</Heading>
       <Heading as='h4' size='md'>{ release.artist.name }</Heading>
